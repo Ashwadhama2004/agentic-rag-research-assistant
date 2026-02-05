@@ -1,0 +1,43 @@
+# Multi-Tenant Agentic RAG Research & Knowledge Assistant
+# Core dependencies
+
+# Web Framework
+streamlit==1.31.0
+fastapi==0.109.0
+uvicorn==0.27.0
+pydantic==2.5.0
+
+# LLM Options
+groq==0.4.2
+# ollama==0.1.6  # Uncomment if using local Ollama
+
+# Embeddings
+sentence-transformers==2.3.1
+
+# Document Processing
+pypdf2==3.0.1
+python-docx==1.1.0
+python-multipart==0.0.6
+
+# Data & ML
+numpy==1.26.3
+pandas==2.2.0
+torch>=2.0.0
+
+# Visualization
+plotly==5.18.0
+matplotlib==3.8.2
+seaborn==0.13.1
+
+# Database & Storage
+sqlalchemy==2.0.25
+aiosqlite==0.19.0
+
+# Authentication
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# Utils
+python-dotenv==1.0.0
+httpx==0.26.0
+aiofiles==23.2.1
