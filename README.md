@@ -38,8 +38,8 @@ A production-ready research assistant combining RAG (Retrieval-Augmented Generat
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/endee_company_task.git
-cd endee_company_task
+git clone https://github.com/Ashwadhama2004/agentic-rag-research-assistant.git
+cd agentic-rag-research-assistant
 
 # Create virtual environment
 python -m venv venv
