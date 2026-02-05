@@ -2,6 +2,9 @@
 
 A production-ready research assistant combining RAG (Retrieval-Augmented Generation) with autonomous AI agents, built on the Endee vector database.
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://agentic-rag-research-assistant-blvrdddmuvk849tpyptkxs.streamlit.app/)
+
+
 ## Screenshots
 
 ### Login Page
