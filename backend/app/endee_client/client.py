@@ -21,9 +21,9 @@ from requests.exceptions import ConnectionError, Timeout
 from backend.app.config import config
 
 
-# Endee Server Configuration
-ENDEE_SERVER_URL = os.getenv("ENDEE_SERVER_URL", "http://localhost:8080")
-ENDEE_AUTH_TOKEN = os.getenv("ENDEE_AUTH_TOKEN", "")
+# Endee Server Configuration - Use values from config
+ENDEE_SERVER_URL = config.ENDEE_SERVER_URL
+ENDEE_AUTH_TOKEN = config.ENDEE_AUTH_TOKEN
 
 
 @dataclass

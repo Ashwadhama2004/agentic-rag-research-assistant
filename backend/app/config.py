@@ -51,6 +51,8 @@ class Config:
     
     # Endee Vector Database
     ENDEE_PATH: str = get_secret("ENDEE_PATH", str(BASE_DIR / "endee_db"))
+    ENDEE_SERVER_URL: str = get_secret("ENDEE_SERVER_URL", "http://localhost:8080")
+    ENDEE_AUTH_TOKEN: str = get_secret("ENDEE_AUTH_TOKEN", "")
     
     # Application Settings
     MAX_UPLOAD_SIZE_MB: int = int(get_secret("MAX_UPLOAD_SIZE_MB", "200"))
