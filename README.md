@@ -88,6 +88,27 @@ OLLAMA_BASE_URL=http://localhost:11434
 LLM_MODEL=llama3.1
 ```
 
+### Endee Vector Database Server (Required for Production)
+
+The application uses Endee as its vector database. For full functionality, run the Endee server:
+
+```bash
+# Start Endee server using Docker
+docker run -d -p 8080:8080 -v endee-data:/data --name endee-server endeeio/endee-server:latest
+
+# Verify it's running
+curl http://localhost:8080/api/v1/index/list
+# Should return: {"indexes":[]}
+
+# Stop the server (when needed)
+docker stop endee-server
+
+# Remove container (to recreate)
+docker rm endee-server
+```
+
+> **Note**: Without the Endee server, the app falls back to local file storage (pickle files). This works for development but the Endee server is recommended for production use.
+
 ### Run the Application
 
 ```bash
