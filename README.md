@@ -45,7 +45,7 @@ graph TD
     Embed --> Endee[(Endee Vector DB)]
     Planner --> Endee
     
-    Endee --> LLM[LLM Inference\n(Groq/Ollama)]
+    Endee --> LLM[LLM - Groq/Ollama]
     RAG --> LLM
     Agent --> LLM
 ```
