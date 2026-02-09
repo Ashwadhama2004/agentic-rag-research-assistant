@@ -1,6 +1,80 @@
 # Multi-Tenant Agentic RAG Research Assistant
 
 A production-ready research assistant combining RAG (Retrieval-Augmented Generation) with autonomous AI agents, built on the Endee vector database.
+
+## Project Overview
+
+Modern teams deal with large volumes of technical documents and rapidly changing external research. Traditional keyword search misses context, and standard chatbots lack memory of your private data.
+
+**This Agentic RAG Research Assistant solves these problems by providing:**
+- **Grounded Answers**: Responses backed by your uploaded documents (PDF, DOCX, TXT, MD).
+- **Autonomous Research**: AI agents that plan and execute multi-step research tasks.
+- **Semantic Memory**: Long-term retention of conversations and findings using Endee.
+- **Multi-Tenancy**: Complete data isolation for every user.
+- **Transparent Metrics**: Real-time tracking of retrieval accuracy and latency.
+
+### Problem Statement
+
+| Problem | Our Solution |
+|---------|--------------|
+| **Information Overload** | Semantic search retrieves exact answers, not just keywords. |
+| **Hallucinations** | RAG ensures every claim is cited from your documents. |
+| **Lost Context** | Endee vector memory maintains long-term conversation history. |
+| **Complex Research** | Autonomous agents break down broad questions into executable steps. |
+
+---
+
+## System Design & Technical Approach
+
+### High-Level Architecture
+
+The system is built on a **FastAPI** backend and **Streamlit** frontend, centered around the **Endee Vector Database** for all semantic memory.
+
+```mermaid
+graph TD
+    User[User / Streamlit UI] --> API[FastAPI Backend]
+    API --> Auth[Auth & Session Manager]
+    API --> Router[Request Router]
+    
+    Router --> RAG[RAG Engine]
+    Router --> Agent[Agentic Layer]
+    
+    RAG --> Embed[Embedding Service]
+    Agent --> Planner[Task Planner]
+    
+    Embed --> Endee[(Endee Vector DB)]
+    Planner --> Endee
+    
+    Endee --> LLM[LLM Inference\n(Groq/Ollama)]
+    RAG --> LLM
+    Agent --> LLM
+```
+
+### Core Components
+
+1.  **Endee Vector Database**: The semantic backbone. It stores:
+    *   `user_{id}_docs`: Document chunks and embeddings.
+    *   `user_{id}_memory`: Conversation history and summaries.
+    *   `user_{id}_agent`: Agent reasoning traces and research findings.
+    *   *Key Feature*: **Multi-tenancy** is enforced via namespace prefixes, ensuring 100% data isolation.
+
+2.  **RAG Engine (Retrieval-Augmented Generation)**:
+    *   **Ingestion**: Parses documents $\rightarrow$ Chunks (500 chars) $\rightarrow$ Embeddings (SentenceTransformers).
+    *   **Retrieval**: Hybrid search (Dense Vector + Keyword) to find top-K relevant chunks.
+    *   **Generation**: LLM synthesizes answers with strict citations.
+
+3.  **Agentic Layer (The "Brain")**:
+    *   Uses a **Think-Plan-Act-Reflect** loop.
+    *   **Planner**: Decomposes complex queries (e.g., "Compare X and Y") into sub-tasks.
+    *   **Executor**: Calls tools (Vector Search, Web Search, Summarizer) to gather data.
+    *   **Reflector**: Verifies if the answer satisfies the user's intent before responding.
+
+4.  **Frontend & Monitoring**:
+    *   **Streamlit**: Provides a reactive UI for chat, uploads, and dashboards.
+    *   **Metrics**: Tracks query latency, token usage, and retrieval precision in real-time.
+
+---
+
 ## Demo Link
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://agentic-rag-research-assistant-blvrdddmuvk849tpyptkxs.streamlit.app/)
 
@@ -25,8 +99,6 @@ A production-ready research assistant combining RAG (Retrieval-Augmented Generat
 ### Metrics Dashboard
 ![Metrics](images/Metrics.png)
 
-### Demo Video
-[View Full Demo Video](images/full_screen.mp4)
 
 ---
 
